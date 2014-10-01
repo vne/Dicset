@@ -1,0 +1,25 @@
+{
+  "name": "Dicset",
+  "version": "0.0.1",
+  "description": "A set of dictionaries (mappings)",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Vladimir Neverov <sanguini@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vne/Dicset.git"
+  },
+  "keywords": [
+    "dictionary",
+    "mapping",
+    "lookup",
+    "search"
+  ],
+  "bugs": {
+    "url": "https://github.com/vne/Dicset/issues"
+  },
+  "homepage": "https://github.com/vne/Dicset"
+}
