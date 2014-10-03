@@ -1,12 +1,15 @@
 {
-  "name": "Dicset",
+  "name": "dicset",
   "version": "0.0.1",
   "description": "A set of dictionaries (mappings)",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
-  "author": "Vladimir Neverov <sanguini@gmail.com>",
+  "author": {
+    "name": "Vladimir Neverov",
+    "email": "sanguini@gmail.com"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -21,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/vne/Dicset/issues"
   },
-  "homepage": "https://github.com/vne/Dicset"
+  "homepage": "https://github.com/vne/Dicset",
+  "readme": "Dicset\n======\n\nA set of dictionaries (mappings)\n\nWritten by Vladimir Neverov <sanguini@gmail.com> in 2014\n\nUsage\n-----\n\nConstructor takes path to dictionary file as first argument, settings object as second argument.\n\nDictionary file has an INI-like syntax:\n\n\t[dicname]\n\tfrom1 \tto1 \tcomment1\n\tfrom2\tto2\t\tcomment2\n\t\"from 3 value\"   \"to 3 value\"    a long and winding comment\n\t\n\t[dicname2]\n\t...\n\nThere are two settings recognized by now:\n\n\t - def - a default value that is returned when no dictionary is found\n\t - xml2js - boolean, if true - do output in xml2js style (default is old-fashioned non-compatible style :)\n\nLines starting with # are treated as comments and ignored. Empty lines are ignored.\nColumns can be divided with any number of space characters (including tabs, excluding newlines).\n'from' and 'to' values can be quoted. In this case they can contain spaces. The following characters\nare recognized as quotes: \", ' and `\n\nThe constructor reads the file and returns an object with several lookup methods. It can throw an exception if\neither a dictionary file couldn't be read or is malformed (not INI-like syntax).\n\n - .lookup method maps values from the first column to the second one, returns object (syntax depends on xml2js option)\n - .reverse method maps values from the second column to the first one, returns object\n - .comment method maps comments to 'from' and 'to' values (returns object { from: ..., to: ... }), returns object\n - .ilookup, .ireverse and .icomment methods perform case-insensitive lookups, they return objects\n\n - .to_id method do a reverse lookup (by 'to' field) and return ID only ('from' field)\n - .from_id method do a straight lookup (by 'from' field) and return ID onlu\n - .to_comment and .from_comment methods do lookups by 'to' and 'from' fields respectively and return a text comment\n\nExample:\n\n\tvar dic = new Dicset('/path/to/file');\n\tconsole.log(dic.lookup('metro', 15));\n\nThis will lookup a 'metro' dictionary for value 15 and return an object like this (in case when xml2js option is false):\n\n\t{\n\t \t$id: 25,\n\t \tcomment: 'Central station'\n\t}\n\nWith xml2js option set the output will be:\n\n\t{\n\t \t$: {\n\t\t\tid: 25\n\t\t},\n\t \tcomment: 'Central station'\n\t}\n\nIf either dictionary is missing or a value is not found, a default value (undefined by default) is returned.\n\nN.B.! If a lookup result (for either 'from' and 'to' lookups) is zero, this is treated as special case and undefined is returned. You can mark records\nthat do not currently have a mapping with zero.\n\n",
+  "readmeFilename": "README.md",
+  "gitHead": "1a945645a122fe48e37deb958b1961ea5f886dd5",
+  "_id": "dicset@0.0.1",
+  "_shasum": "94feed4bd1632591a1714da01962831073f035b0",
+  "_from": "Dicset@"
 }
