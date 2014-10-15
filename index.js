@@ -144,6 +144,7 @@ Dicset.prototype.lookup = function(dic, id, icase) {
 Dicset.prototype.ilookup = function(dic, id) { return this.lookup(dic, id, true); }
 
 Dicset.prototype.reverse = function(dic, id, icase) {
+	if (this.settings.callback && this.settings.callback.constructor === Function){this.settings.callback.apply(this, arguments)}
 	if (!this.rev[dic]) { return this.def; }
 	if (id && icase) { id = id.toString().toLowerCase(); }
 	return this.formatEntry(this.rev[dic][id]);
