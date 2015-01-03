@@ -139,21 +139,21 @@ Dicset.prototype.from_comment = function(dic, id, icase) {
 Dicset.prototype.lookup = function(dic, id, icase) {
 	if (!this.dic[dic]) { return this.def; }
 	if (id && icase) { id = id.toString().toLowerCase(); }
-	return this.formatEntry(this.dic[dic][id]);
+	return this.formatEntry((icase ? this.idic : this.dic)[dic][id]);
 }
 Dicset.prototype.ilookup = function(dic, id) { return this.lookup(dic, id, true); }
 
 Dicset.prototype.reverse = function(dic, id, icase) {
 	if (!this.rev[dic]) { return this.def; }
 	if (id && icase) { id = id.toString().toLowerCase(); }
-	return this.formatEntry(this.rev[dic][id]);
+	return this.formatEntry((icase ? this.irev : this.rev)[dic][id]);
 }
 Dicset.prototype.ireverse = function(dic, id) { return this.reverse(dic, id, true); }
 
 Dicset.prototype.comment = function(dic, id, icase) {
 	if (!this.com[dic]) { return this.def; }
 	if (id && icase) { id = id.toString().toLowerCase(); }
-	return this.com[dic][id];
+	return (icase ? this.icom : this.com)[dic][id];
 }
 Dicset.prototype.icomment = function(dic, id) { return this.comment(dic, id, true); }
 

@@ -1,6 +1,6 @@
 {
   "name": "dicset",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A set of dictionaries (mappings)",
   "main": "index.js",
   "scripts": {

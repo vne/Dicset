@@ -61,4 +61,22 @@ describe('Dicset lookup', function() {
 	it('should map strings to strings', function() {
 		assert.deepEqual(dic.lookup('dic1', 'x'), { $id: "y", _: "" });
 	});
+	it('should fail a case-sensitive lookup', function() {
+		assert.equal(dic.lookup('dic1', 'icase'), undefined);
+	});
+	it('should perform a case-sensitive lookup', function() {
+		assert.deepEqual(dic.lookup('dic1', 'iCase'), { $id: "Qbc", _: "no comment"});
+	});
+	it('should perform a case-insensitive lookup', function() {
+		assert.deepEqual(dic.ilookup('dic1', 'icase'), { $id: "Qbc", _: "no comment"});
+	});
+	it('should fail a case-sensitive reverse lookup', function() {
+		assert.equal(dic.reverse('dic1', 'qbc'), undefined);
+	});
+	it('should perform a case-sensitive reverse lookup', function() {
+		assert.deepEqual(dic.reverse('dic1', 'Qbc'), { $id: "iCase", _: "no comment"});
+	});
+	it('should perform a case-insensitive reverse lookup', function() {
+		assert.deepEqual(dic.ireverse('dic1', 'qbc'), { $id: "iCase", _: "no comment"});
+	});
 });
